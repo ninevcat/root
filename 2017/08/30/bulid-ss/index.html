@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/root/img/favicon.ico">
+
+    <title>
+        
+          从零搭建科♂学♀上网的小梯子 - 秦昊昊的博客 | Ninevcat&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://ninevcat.github.io/root/root/2017/08/30/bulid-ss/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/root/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/root/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/root/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/root/">Ninevcat&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/root/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/root/tags/">Tags</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/root/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/root/archives/">Archives</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://ninevcat.github.io/root/root/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('post-bg-bulid-ss.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/root/tags/#搬瓦工" title="搬瓦工">搬瓦工</a>
+                        
+                          <a class="tag" href="/root/tags/#ShadowsocksX" title="ShadowsocksX">ShadowsocksX</a>
+                        
+                    </div>
+                    <h1>从零搭建科♂学♀上网的小梯子</h1>
+                    <h2 class="subheading"> &quot;Be Safe. No, Be Free.&quot;</h2>
+                    <span class="meta">
+                        Posted by Ninevcat on
+                        2017-08-30
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>喵喵 抓住了8月份的尾巴终于做成了想做了很久但是一直没有做的事。</p>
+<p><a href="#build">跳过废话，直接看技术实现 </a></p>
+<p>在2017年之前, 喵喵一直在各种大佬或者小伙伴推荐的vpn之前来回换着用。从免费的lantern到月付30多的多态, 喵喵真的尝试了很多款vpn。</p>
+<p>(不要问喵喵为什么要执着于翻墙, 因为翻墙 恩 对于程序员来说真的是 <strong>刚需</strong> 呀 👀 ~)</p>
+<p>喵喵之前因为嫌麻烦没有折腾vps, 想着一键付款多么方便(<del>傻瓜</del>)呀, 再加上好多购买vps的网站只支持信用卡付款,使得喵喵也没有折腾的条件。然而尝试了辣么多的vpn, 体验真的是一言难尽, 在速度好的时候可以看youtobe720p无压力 ,而速度差的时候连chrome应用商店都刷新不出来。每次打开vpn 都拼上了全部的幸运值, 实在是让喵喵san值减减减。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1709268-66f6dccb05187b12.JPG?imageMogr2/auto-orient/strip%7CimageView2/2/w/450" alt="IMG_0098.JPG"></p>
+<p>后来偶然看到性价比很高的搬瓦工开通了支付宝付款的途径, 最低的配置加上6%的优惠力度和走低的美元汇率每年才 <strong>100</strong> 人民币出头, 行吧 , 此时不搞更待何时 , 那就花一天时间搞一个吧! </p>
+<p id="build"></p>
+
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>接下来说说搭建梯子的各个细节。</p>
+<blockquote>
+<p>Here comes details!</p>
+</blockquote>
+<h2 id="购买vps"><a href="#购买vps" class="headerlink" title="购买vps"></a>购买vps</h2><p><img src="http://upload-images.jianshu.io/upload_images/1709268-bd1e90b15b1f9d03.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Artboard.png"></p>
+<p><a href="https://bandwagonhost.com/aff.php?aff=16970" target="_blank" rel="external">官方网站</a></p>
+<p>Bandwagon Host，中文俗称搬瓦工，是新手接触vps时经常能听到的名字，有ovz和kvm的方案可以选择，一般选择kvm的方案。</p>
+<h4 id="有什么配置可以选择？"><a href="#有什么配置可以选择？" class="headerlink" title="有什么配置可以选择？"></a>有什么配置可以选择？</h4><p>搬瓦工VPS的各种配置比较丰富，曾经还出现过64M内存，128M内存的绝版小VPS，是干某件事情的首选呀。目前搬瓦工主要热售的几款配置如下：</p>
+<p><strong>划重点</strong>！！！搬瓦工的CN2上线啦，配置：</p>
+<p>SSD: 10 GB RAID-10<br>RAM: 512 MB<br>CPU: 1x Intel Xeon<br>Transfer: 500 GB/mo<br>Link speed: 1 Gigabit<br>价格：29.99美元/年<br><a href="https://bwh1.net/aff.php?aff=16970&amp;pid=56" target="_blank" rel="external"><strong>购买链接</strong>  (推荐)  </a></p>
+<p>10G KVM – PROMO<br>内存：512M<br>硬盘：10G SSD<br>CPU：1核<br>流量：500G/月<br>端口：1Gbps<br>价格：19.99美元/年 或<br>2.99美元/月<br><a href="https://bwh1.net/aff.php?aff=16970&amp;pid=43" target="_blank" rel="external"><strong>购买链接</strong>（推荐）</a></p>
+<p><strong>以上两种vps任选一个</strong></p>
+<h4 id="怎么购买搬瓦工（Bandwagon-Host）？"><a href="#怎么购买搬瓦工（Bandwagon-Host）？" class="headerlink" title="怎么购买搬瓦工（Bandwagon Host）？"></a>怎么购买搬瓦工（Bandwagon Host）？</h4><ul>
+<li><p>点击上文的购买链接，选择购买的时间价格和机房位置（选QNET或MCOM），如图</p>
+<p> <img src="http://upload-images.jianshu.io/upload_images/1709268-98926c9e976d05f0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="400183572.png"></p>
+<p> <img src="http://upload-images.jianshu.io/upload_images/1709268-c503bba7b757f302.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="4176239896.png"></p>
+</li>
+</ul>
+<p>​    然后点击add to card</p>
+<ul>
+<li><p>在Promotional Code里面输入优惠码，然后点击validate code确认优惠码, 如图 </p>
+<blockquote>
+<p>优惠码: <code>BWH1ZBPVK</code>——–能省6%</p>
+</blockquote>
+<p> <img src="http://upload-images.jianshu.io/upload_images/1709268-8fdf1ac3d2954dba.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1340185279.png"></p>
+<p> 最后点击check out 付款</p>
+</li>
+<li><p>先写个人信息</p>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1709268-b1c5801ffe8942fc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="1111786092.png"></p>
+<p>​    勾选 I have read and agree to the Terms of Service<br>​    再点击 complete order<br>​    注意！！！！<strong>不能</strong>选择与自己<strong>ip</strong>地址不符合的国家，否则可能会被判为欺诈</p>
+<ul>
+<li>然后点击pay now,图例为支付宝方式</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/1709268-6cc0b815f1b12e87.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="2449434802.png"></p>
+<p>​    然后扫描二维码<strong>支付宝付款</strong>即可。购买成功之后，欢迎走进VPS新世界的大门！</p>
+<h2 id="安装锐速加速"><a href="#安装锐速加速" class="headerlink" title="安装锐速加速"></a>安装锐速加速</h2><p>如果你想要安装锐速或者bbr的时候,你就需要查看一下自己的系统版本。</p>
+<ol>
+<li>如果系统版本不是<code>centos-6-x86_64</code>的话, 选择install new OS 栏, 选择<code>centos-6-x86_64</code></li>
+<li>记下root密码及ssh端口号。</li>
+</ol>
+<p>Windows 用Xshell 登录ssh, Mac可以考虑用ShellCraft</p>
+<p>连接服务器开始安装</p>
+<h4 id="更换系统内核"><a href="#更换系统内核" class="headerlink" title="更换系统内核"></a>更换系统内核</h4><ol>
+<li><p>SSH连接小鸡后，将内核更换为2.6.32-504.3.3.el6.x86_64，输入以下命令即可自动安装更换。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -ivh http:<span class="regexp">//</span>soft.<span class="number">91</span>yun.org<span class="regexp">/ISO/</span>Linux<span class="regexp">/CentOS/</span>kernel<span class="regexp">/kernel-2.6.32-504.3.3.el6.x86_64.rpm --force</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>输入以下代码查看内核是否安装成功。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rpm -<span class="keyword">qa</span> | <span class="keyword">grep</span> kernel</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>​    显示的信息中包含kernel-2.6.32-504.3.3.el6.x86_64即为成功。</p>
+<ol>
+<li><p>输入以下代码重启VPS</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">reboot</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>重新连接后输入以下代码查看内核。</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">uname -r</span></div></pre></td></tr></table></figure>
+<p>显示为kernel-2.6.32-504.3.3.el6.x86_64即为成功。</p>
+</li>
+</ol>
+<h4 id="安装锐速"><a href="#安装锐速" class="headerlink" title="安装锐速"></a>安装锐速</h4><p>复制粘贴下面全部代码：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget --<span class="keyword">no</span>-check-certificate -O appex.<span class="keyword">sh</span> http<span class="variable">s:</span>//raw.githubusercontent.<span class="keyword">com</span>/<span class="number">0</span>oVicero0/serverSpeeser_Install/master/appex.<span class="keyword">sh</span> &amp;&amp; chmod +<span class="keyword">x</span> appex.<span class="keyword">sh</span> &amp;&amp; bash appex.<span class="keyword">sh</span> install</div></pre></td></tr></table></figure>
+<h2 id="Shadowsocks一键安装脚本"><a href="#Shadowsocks一键安装脚本" class="headerlink" title="Shadowsocks一键安装脚本"></a>Shadowsocks一键安装脚本</h2><p><a href="#easy">我不爱折腾</a></p>
+<p>安装脚本非常丰富, 有 Shadowsocks-Python， ShadowsocksR， Shadowsocks-Go， Shadowsocks-libev 版</p>
+<p>从易用性和后续的多个服务端配置考虑, 喵喵选择了Shadowsocks-Go的版本。<del>(你以为我会告诉你这是喵喵试了好多版本试出来的嘛, 哼)</del></p>
+<p><strong>本脚本适用环境：</strong><br>系统支持：CentOS，Debian，Ubuntu<br>内存要求：≥64M<br>更新日期：2017 年 07 月 22 日</p>
+<p><strong>默认配置：</strong><br>服务器端口：自己设定（如不设定，默认为 8989）<br>密码：自己设定（如不设定，默认为 teddysun.com）<br>加密方式：自己设定（如不设定，默认为 aes-256-cfb）</p>
+<h4 id="使用方法："><a href="#使用方法：" class="headerlink" title="使用方法："></a><strong>使用方法：</strong></h4><p>使用root用户登录，运行以下命令</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget --<span class="keyword">no</span>-check-certificate -O shadowsocks-<span class="keyword">go</span>.<span class="keyword">sh</span> http<span class="variable">s:</span>//raw.githubusercontent.<span class="keyword">com</span>/teddysun/shadowsocks_install/master/shadowsocks-<span class="keyword">go</span>.<span class="keyword">sh</span> &amp;&amp; chmod +<span class="keyword">x</span> shadowsocks-<span class="keyword">go</span>.<span class="keyword">sh</span> &amp;&amp; ./shadowsocks-<span class="keyword">go</span>.<span class="keyword">sh</span> <span class="number">2</span>&gt;&amp;<span class="number">1</span> | tee shadowsocks-<span class="keyword">go</span>.<span class="built_in">log</span></div></pre></td></tr></table></figure>
+<p>安装完成后，脚本提示如下：</p>
+<figure class="highlight oxygene"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Congratulations, Shadowsocks-go server install completed!</div><div class="line">Your Server IP        :your_server_ip</div><div class="line">Your Server Port      :your_server_port</div><div class="line">Your Password         :your_password</div><div class="line">Your Encryption <span class="function"><span class="keyword">Method</span>:</span>your_encryption_method</div><div class="line"></div><div class="line">Welcome <span class="keyword">to</span> visit:https:<span class="comment">//teddysun.com/392.html</span></div><div class="line">Enjoy it!</div></pre></td></tr></table></figure>
+<p><strong>卸载方法：</strong><br>使用 root 用户登录，运行以下命令：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./shadowsocks-go<span class="selector-class">.sh</span> uninstall</div></pre></td></tr></table></figure>
+<p>安装完成后即已后台启动 Shadowsocks-go ，运行：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="regexp">/etc/i</span>nit.d<span class="regexp">/shadowsocks status</span></div></pre></td></tr></table></figure>
+<p>可以查看 Shadowsocks-go 进程是否已经启动。<br>本脚本安装完成后，已将 shadowsocks-go 加入开机自启动。</p>
+<p><strong>使用命令：</strong><br>启动：/etc/init.d/shadowsocks start<br>停止：/etc/init.d/shadowsocks stop<br>重启：/etc/init.d/shadowsocks restart<br>状态：/etc/init.d/shadowsocks status</p>
+<p><a href="https://teddysun.com/392.html" target="_blank" rel="external">多用户多端口配置文件示例：(查看)  </a></p>
+<p id="easy"></p>
+
+<h2 id="用搬瓦工自带的ss工具进行配置"><a href="#用搬瓦工自带的ss工具进行配置" class="headerlink" title="用搬瓦工自带的ss工具进行配置"></a>用搬瓦工自带的ss工具进行配置</h2><ol>
+<li>进入Services -&gt; My Services <a href="https://bwh1.net/clientarea.php?action=products" target="_blank" rel="external"><strong>点击</strong></a></li>
+<li>点击shadowsocks server 选择 <code>Install Shadowsocks Server</code></li>
+</ol>
+<p><img src="http://upload-images.jianshu.io/upload_images/1709268-0679a52845b0f3b4.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt=""></p>
+<ol>
+<li>对照KiwiVM<strong>黄色</strong>输入框部分所给的参数, 填在shadowsocks客户端相应的位置</li>
+</ol>
+<p><img src="http://upload-images.jianshu.io/upload_images/1709268-b29b8f0f7c34ae1b.PNG?imageMogr2/auto-orient/strip%7CimageView2/2/w/800" alt="IMG_1221.PNG"></p>
+<p>最后 享受美好的新世界吧!</p>
+<h2 id="下载Shadowsocks客户端"><a href="#下载Shadowsocks客户端" class="headerlink" title="下载Shadowsocks客户端"></a>下载Shadowsocks客户端</h2><p><a href="http://www.xiazai.ml/" target="_blank" rel="external">点击下载各种客户端</a></p>
+<h2 id="感谢秋水逸冰大佬的脚本"><a href="#感谢秋水逸冰大佬的脚本" class="headerlink" title="感谢秋水逸冰大佬的脚本"></a>感谢秋水逸冰大佬的脚本</h2><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://teddysun.com/392.html" target="_blank" rel="external">Shadowsocks-go一键安装脚本</a></p>
+<p><a href="http://www.shellsec.com/news/38996.html" target="_blank" rel="external">一步一步教你在搬瓦工KVM上安装影梭并用bbr或锐速加速</a></p>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/root/2017/08/08/init-hexo/" data-toggle="tooltip" data-placement="top" title="初始化hexo">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                    
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/root/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/root/tags/#搬瓦工" title="搬瓦工">搬瓦工</a>
+                        
+                          <a class="tag" href="/root/tags/#ShadowsocksX" title="ShadowsocksX">ShadowsocksX</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="#" target="_blank">婷子洁。</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "ninevcat-blog";
+    var disqus_identifier = "https://ninevcat.github.io/root/2017/08/30/bulid-ss/";
+    var disqus_url = "https://ninevcat.github.io/root/2017/08/30/bulid-ss/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                    <li>
+                        <a target="_blank" href="https://twitter.com/bestbacky">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/ninevcat">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/ninevcat">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Ninevcat&#39;s Blog 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span>  
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=ninevcat&repo=ninevcat.github.io&type=star&count=false" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/root/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/root/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/root/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://ninevcat.github.io/root/root/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/root/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://ninevcat.github.io/root/root/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
