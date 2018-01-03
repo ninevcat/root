@@ -13,11 +13,11 @@
 
     <title>
         
-          初始化hexo - 秦昊昊的博客 | Ninevcat&#39;s Blog
+          教你怎么在微信&quot;跳一跳&quot;高分上榜 - 秦昊昊的博客 | Ninevcat&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://ninevcat.github.io/root/root/2017/08/08/init-hexo/">
+    <link rel="canonical" href="https://ninevcat.github.io/root/root/2018/01/03/champion-wechat-jump/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/root/css/bootstrap.min.css">
@@ -155,7 +155,7 @@
 <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('post-bg-2017.jpg')
+        background-image: url('post-bg-champion-wechat-jump.jpg')
     }
 </style>
 <header class="intro-header" >
@@ -165,14 +165,16 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/root/tags/#Hexo" title="Hexo">Hexo</a>
+                          <a class="tag" href="/root/tags/#跳一跳" title="跳一跳">跳一跳</a>
+                        
+                          <a class="tag" href="/root/tags/#Python" title="Python">Python</a>
                         
                     </div>
-                    <h1>初始化hexo</h1>
-                    <h2 class="subheading">从零搭建自己的博客</h2>
+                    <h1>教你怎么在微信&quot;跳一跳&quot;高分上榜</h1>
+                    <h2 class="subheading"></h2>
                     <span class="meta">
                         Posted by Ninevcat on
-                        2017-08-08
+                        2018-01-03
                     </span>
                 </div>
             </div>
@@ -191,7 +193,86 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                
+                <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>自从微信更新了6.6.1新版本后，官方推出了”跳一跳”小程序。具体玩法是通过手指触摸屏幕的时间长短给一个压力值给屏幕上的小棋子，控制着它在不同的盒子上不断向前跳。坚持的时间越长，分数就越高。事实证明，喵喵不是玩游戏的好手，努力了好久，还没有上到100分，于是就想到用程序员的思维<del>(开挂)</del>来解决问题。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1709268-b2a2878467297776.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/200" alt="1.jpg"></p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>接下来说说具体细节。</p>
+<blockquote>
+<p>Here comes details!</p>
+</blockquote>
+<h2 id="环境"><a href="#环境" class="headerlink" title="环境"></a>环境</h2><p>首先说一下喵喵使用的是Mac+iOS的硬件环境。</p>
+<p>使用其他硬件环境的小伙伴请将我的博客仅做参考。</p>
+<p><strong>软件环境：</strong><br><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.</div><div class="line">├── Xcode</div><div class="line">├── WebDriverAgent</div><div class="line">├── Carthage</div><div class="line">├── Homebrew</div><div class="line">├── Python</div><div class="line">├── Node.js</div><div class="line">└── [<span class="string">Github项目包</span>](<span class="link">https://github.com/wangshub/wechat_jump_game</span>)</div></pre></td></tr></table></figure></p>
+<ul>
+<li>首先需要你安装Xcode和Homebrew，这个应该可以百度或者谷歌解决。</li>
+<li>使用 <code>brew install carthage</code></li>
+<li>使用 <code>brew install python3</code></li>
+<li>使用 <code>brew install node</code></li>
+</ul>
+<blockquote>
+<p>使用真机调试 WDA，参考 iOS 真机如何安装 <a href="https://testerhome.com/topics/7220" target="_blank" rel="external">WebDriverAgent · TesterHome</a></p>
+</blockquote>
+<h2 id="安装WebDriverAgent"><a href="#安装WebDriverAgent" class="headerlink" title="安装WebDriverAgent"></a>安装WebDriverAgent</h2><p>打开终端</p>
+<ul>
+<li><p>下载:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git clone https://github.com/facebook/WebDriverAgent</div></pre></td></tr></table></figure>
+</li>
+<li><p>下载完成之后<strong>进入 WebDriverAgent 的目录下</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ./Scripts/bootstrap.sh</div></pre></td></tr></table></figure>
+</li>
+<li><p>如果WebDriverAgent目录没错， 上面的环境都成功安装，那么应该可以把 WebDriverAgent 安装起来了，<strong>这一步很重要</strong>。</p>
+</li>
+</ul>
+<h2 id="编译WebDriverAgent"><a href="#编译WebDriverAgent" class="headerlink" title="编译WebDriverAgent"></a>编译WebDriverAgent</h2><ol>
+<li><p>在Xcode中打开WebDriverAgent工程。</p>
+</li>
+<li><p>如果是真机运行的话，需要安装开发者证书用于调试，就是<strong>交了钱的那个!!</strong> 。(<strong>如果是免费版的个人证书</strong>，还需要修改下WebDriverAgent的BundleID)</p>
+</li>
+<li><p>Product -&gt; Destination选择目标设备。</p>
+</li>
+<li><p>Product -&gt; Scheme选择编译对象WebDriverAgentRunner。</p>
+</li>
+<li><p>最后运行 Product -&gt; Test。</p>
+</li>
+<li><p>一切正常的话，手机上会出现一个无图标的WebDriverAgent应用，启动之后，马上又返回到桌面。这是很正常的不要奇怪。</p>
+</li>
+<li><p>此时控制台界面可以看到设备的IP。如果看不到的话，View -&gt; Debug Area激活控制台。</p>
+</li>
+<li><p>通过上面给出的IP和端口，加上<code>/status</code>合成一个url地址。例如<code>http://192.168.1.103:8100/status</code>，然后手机浏览器打开。如果出现一串JSON输出，说明WDA安装成功了。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1709268-8ca54f7f9eff2b56.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/512" alt="2"></p>
+</li>
+<li><p>安装usbmuxd，用于将手机的8100端口通过usb映射到电脑端。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ brew install usbmuxd</div><div class="line">$ iproxy 8100 8100</div></pre></td></tr></table></figure>
+</li>
+<li><p>然后，我们在浏览器中输入<a href="http://localhost:8100/inspector" target="_blank" rel="external">http://localhost:8100/inspector</a> 得到如下信息则说明连接成功</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1709268-21615536ba00729f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="3"></p>
+</li>
+</ol>
+<h2 id="运行-Python"><a href="#运行-Python" class="headerlink" title="运行 Python"></a>运行 Python</h2><p>Python 环境需求：facebook-wda numpy matplotlib PIL</p>
+<p>这里因为PIL已经不用了 所以安装的是pillow</p>
+<p>一键安装 <code>sudo pip3 install facebook-wda numpy matplotlib pillow</code></p>
+<p>理论上可以一键安装， 如果不行的话就逐个安装。<del>(不要打喵喵)</del></p>
+<p>配置好环境以后运行安装好的 <code>WebDriverAgentRunner</code>，准备运行脚本。</p>
+<h2 id="实施方案"><a href="#实施方案" class="headerlink" title="实施方案"></a>实施方案</h2><p>将手机点击到 “跳一跳” 小程序界面</p>
+<p><a href="#easy">我不爱折腾</a></p>
+<ul>
+<li>运行 <code>python3 wechat_jump_iOS_py3.py</code></li>
+<li>依次点击弹出的窗口中的起始位置和目标位置，会自动计算距离后起跳</li>
+<li>根据起跳的精准情况更改 <code>python3 wechat_jump_iOS_py3.py</code> 中的 <code>time_coefficient</code> 参数，直到获得最佳取值</li>
+</ul>
+<p id="easy"></p>
+
+<ul>
+<li><p>拷贝 <code>./config/iPhone</code> 目录下对应的设备配置文件，重命名并替换到 <code>./config.json</code></p>
+</li>
+<li><p>运行 <code>python3 wechat_jump_auto_iOS.py</code></p>
+</li>
+</ul>
+<p>小棋子就开始自己往前跳啦~</p>
+<p>最后 享受朋友圈的霸榜吧！友情提示：分数刷太高会被封的哦~</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/1709268-9f2e43ba7b74b3c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/900" alt="4"></p>
+<h2 id="感谢Github大佬的脚本"><a href="#感谢Github大佬的脚本" class="headerlink" title="感谢Github大佬的脚本"></a>感谢Github大佬的脚本</h2><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://zhuanlan.zhihu.com/p/32509276" target="_blank" rel="external">教你在Mac上用Python玩微信跳一跳</a></p>
+<p><a href="https://github.com/wangshub/wechat_jump_game/wiki/Android-%E5%92%8C-iOS-%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4" target="_blank" rel="external">Android 和 iOS 操作步骤</a></p>
+
 
                 <hr>
 
@@ -199,13 +280,9 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/root/2017/08/30/bulid-ss/" data-toggle="tooltip" data-placement="top" title="从零搭建科♂学♀上网的小梯子">&larr; Previous Post</a>
-                        </li>
-                    
                     
                         <li class="next">
-                            <a href="/root/2017/08/01/hello-2017/" data-toggle="tooltip" data-placement="top" title="Welcome to Ninevcat🐱 Blog">Next Post &rarr;</a>
+                            <a href="/root/2017/08/30/bulid-ss/" data-toggle="tooltip" data-placement="top" title="从零搭建科♂学♀上网的小梯子">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
@@ -224,6 +301,20 @@
             </div>
     <!-- Side Catalog Container -->
         
+            <div class="
+                col-lg-2 col-lg-offset-0
+                visible-lg-block
+                sidebar-container
+                catalog-container">
+                <div class="side-catalog">
+                    <hr class="hidden-sm hidden-xs">
+                    <h5>
+                        <a class="catalog-toggle" href="#">CATALOG</a>
+                    </h5>
+                    <ul class="catalog-body"></ul>
+                </div>
+            </div>
+        
 
     <!-- Sidebar Container -->
 
@@ -239,7 +330,9 @@
                     <h5><a href="/root/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
-                          <a class="tag" href="/root/tags/#Hexo" title="Hexo">Hexo</a>
+                          <a class="tag" href="/root/tags/#跳一跳" title="跳一跳">跳一跳</a>
+                        
+                          <a class="tag" href="/root/tags/#Python" title="Python">Python</a>
                         
                     </div>
                 </section>
@@ -271,8 +364,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "ninevcat-blog";
-    var disqus_identifier = "https://ninevcat.github.io/root/2017/08/08/init-hexo/";
-    var disqus_url = "https://ninevcat.github.io/root/2017/08/08/init-hexo/";
+    var disqus_identifier = "https://ninevcat.github.io/root/2018/01/03/champion-wechat-jump/";
+    var disqus_url = "https://ninevcat.github.io/root/2018/01/03/champion-wechat-jump/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -459,6 +552,50 @@
 
 
 <!-- Side Catalog -->
+
+<script type="text/javascript">
+    function generateCatalog (selector) {
+        var P = $('div.post-container'),a,n,t,l,i,c;
+        a = P.find('h1,h2,h3,h4,h5,h6');
+        a.each(function () {
+            n = $(this).prop('tagName').toLowerCase();
+            i = "#"+$(this).prop('id');
+            t = $(this).text();
+            c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+            l = $('<li class="'+n+'_nav"></li>').append(c);
+            $(selector).append(l);
+        });
+        return true;    
+    }
+
+    generateCatalog(".catalog-body");
+
+    // toggle side catalog
+    $(".catalog-toggle").click((function(e){
+        e.preventDefault();
+        $('.side-catalog').toggleClass("fold")
+    }))
+
+    /*
+     * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+     * Fork by Hux to support padding
+     */
+    async("/root/js/jquery.nav.js", function () {
+        $('.catalog-body').onePageNav({
+            currentClass: "active",
+            changeHash: !1,
+            easing: "swing",
+            filter: "",
+            scrollSpeed: 700,
+            scrollOffset: 0,
+            scrollThreshold: .2,
+            begin: null,
+            end: null,
+            scrollChange: null,
+            padding: 80
+        });
+    });
+</script>
 
 
 
